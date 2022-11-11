@@ -258,13 +258,14 @@
 	<footer>
 		<div class="container">
 			<form class="contact-form" id="contactForm" method="post" action=".">
+				<input type="hidden" name="contact_number">
 				<h6>Napisz do nas</h6>
 
 				<label for="fname">Imię</label>
 				<input id="fname" name="fname" type="text" placeholder="Podaj swoję pełne Imię">
 
 				<label for="email">Email</label>
-				<input id="email" name="email" type="email" placeholder="Podaj swój adres Email">
+				<input id="email" name="contact_email" type="email" placeholder="Podaj swój adres Email">
 
 				<label for="message">Dodatkowe informacje</label>
 				<textarea id="message" name="message"></textarea>
@@ -273,7 +274,7 @@
 					<input type="checkbox" id="newsletter" name="newsletter">
 					<p>Chcę zapisać się do newsletter'a.</p>
 				</span>
-				<button class="btn" type="submit">WYŚLIJ</button>
+				<button class="btn" id="formSendBtn" type="submit">WYŚLIJ</button>
 			</form>
 
 			<div class="contact">
@@ -307,6 +308,7 @@
 	</footer>
 
 	<script type="module" src="./src/app.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 import { mapListToDOMElements } from "./domInteractions.js";
+import { sendFormToAPI } from "./requests.js";
 
 class Tweeby {
     constructor () {
@@ -28,18 +29,24 @@ class Tweeby {
     };
 
     goToContactForm = event => {
-        const contactForm = this.viewElements.contactForm;
-        let msg = `Dzień dobry.\n\nKontaktuje się w sprawie współpracy długoterminowej w pakiecie "${event.target.dataset.offerName}".\nProszę o więcej informacji w odpowiedzi na maila podanego w formularzu.`;
+        let contactForm = this.viewElements.contactForm
+        let msg = `Dzień dobry.\n\nKontaktuje się w sprawie współpracy długoterminowej w pakiecie "${event.target.dataset.offerName.toUpperCase()}".\nProszę o więcej informacji w odpowiedzi na maila podanego w formularzu.`;
         contactForm.scrollIntoView({behavior: 'smooth', block: 'center'});
         contactForm.childNodes[13].value = msg;
     };
 
     sendEmail = event => {
         event.preventDefault();
-        // SENDING MAIL
         if (this.viewElements.newsletter.checked) {
-            // SENDING NEWSLETTER
+            // NEWSLETTER
         };
+        let templateParams = {
+            fname: event.target.fname.value,
+            contact_email: event.target.contact_email.value,
+            message: event.target.message.value,
+        };
+        
+        sendFormToAPI(templateParams);
     };
 };
 
